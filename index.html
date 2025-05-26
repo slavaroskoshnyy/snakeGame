@@ -117,7 +117,7 @@
 				collision(newHead, snake)
 			) {
 				clearInterval(game);
-				alert('Игра окончена!');
+				location.reload(); // Автоматическая перезагрузка страницы
 			}
 
 			snake.unshift(newHead);
@@ -144,7 +144,7 @@
 			}
 		}
 
-		game = setInterval(drawGame, 300);
+		game = setInterval(drawGame, 200);
 	</script>
 </body>
 
