@@ -36,6 +36,26 @@
 			background-color: #f0f0f0;
 			border-radius: 50%;
 		}
+
+		#popup {
+			display: none;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: white;
+			padding: 20px;
+			border: 2px solid black;
+			border-radius: 10px;
+			z-index: 100;
+		}
+
+		#popup button {
+			width: auto;
+			padding: 10px 20px;
+			font-size: 16px;
+			margin-top: 10px;
+		}
 	</style>
 </head>
 
@@ -54,9 +74,15 @@
 	</div>
 	<p>Используйте кнопки для управления змейкой.</p>
 
+	<div id="popup">
+		<p>Игра окончена!</p>
+		<button onclick="location.reload()">OK</button>
+	</div>
+
 	<script>
 		const canvas = document.getElementById('gameCanvas');
 		const ctx = canvas.getContext('2d');
+		const popup = document.getElementById('popup');
 
 		const box = 20;
 		let snake = [{ x: 9 * box, y: 10 * box }];
@@ -117,7 +143,8 @@
 				collision(newHead, snake)
 			) {
 				clearInterval(game);
-				location.reload(); // Автоматическая перезагрузка страницы
+				canvas.style.border = '2px solid red';
+				popup.style.display = 'block';
 			}
 
 			snake.unshift(newHead);
@@ -144,7 +171,7 @@
 			}
 		}
 
-		game = setInterval(drawGame, 200);
+		game = setInterval(drawGame, 300);
 	</script>
 </body>
 
